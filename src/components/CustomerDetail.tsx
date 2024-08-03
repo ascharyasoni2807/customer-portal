@@ -22,7 +22,7 @@ const CustomerDetail: React.FC<CustomerDetailProps> = ({ customer }) => {
       <p>
         <strong>Address:</strong> {customer.email}
       </p>
-      <PhotoGrid />
+      <PhotoGrid customer={customer} />
     </div>
   );
 };

@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import "./Css/PhotoGrid.css";
-import { Photo } from "../type";
+import { Customer, Photo } from "../type";
 
-const PhotoGrid: React.FC = () => {
+interface PhotoGridProps {
+  customer: Customer | null;
+}
+const PhotoGrid: React.FC<PhotoGridProps> = ({ customer }) => {
   const [photos, setPhotos] = useState<Photo[]>([]);
 
   useEffect(() => {
@@ -25,7 +28,7 @@ const PhotoGrid: React.FC = () => {
 
     const interval = setInterval(fetchPhotos, 10000); // Fetch new photos every 10 seconds
     return () => clearInterval(interval);
-  }, []);
+  }, [customer]);
 
   return (
     <div className="photo-grid">

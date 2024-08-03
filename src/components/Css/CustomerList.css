@@ -1,5 +1,4 @@
 .customer-list-wrapper {
-    height: 100vh;
     overflow-y: auto;
     min-width: 25rem;
     padding: 10px;
@@ -28,7 +27,7 @@
 }
 
 .selected {
-    background-color: aqua;
+    background-color: #f2f2f2;
 }
 
 

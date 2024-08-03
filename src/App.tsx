@@ -73,19 +73,24 @@ const App: React.FC = () => {
     null;
 
   return (
-    <div className="app-container">
-      <CustomerList
-        customers={customers}
-        selectedCustomerEmail={selectedCustomerEmail}
-        onSelectCustomer={handleSelectCustomer}
-        observerRef={observerRef}
-        loading={loading}
-      />
+    <>
+      <h2 className="app-title">The Cube Assignment</h2>
+      {
+        <div className="app-container">
+          <CustomerList
+            customers={customers}
+            selectedCustomerEmail={selectedCustomerEmail}
+            onSelectCustomer={handleSelectCustomer}
+            observerRef={observerRef}
+            loading={loading}
+          />
 
-      <div className="detail-container">
-        <CustomerDetail customer={selectedCustomer} />
-      </div>
-    </div>
+          <div className="detail-container">
+            <CustomerDetail customer={selectedCustomer} />
+          </div>
+        </div>
+      }
+    </>
   );
 };
 
