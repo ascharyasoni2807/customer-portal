@@ -32,7 +32,25 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  /* Ensure the container takes full viewport height */
+}
+
+.customer-list {
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-container {
+  flex: 1;
+  padding: 20px;
 }

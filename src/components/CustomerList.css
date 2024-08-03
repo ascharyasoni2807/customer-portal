@@ -1,0 +1,40 @@
+.customer-list-wrapper {
+    height: 100vh;
+    overflow-y: auto;
+    width: 20rem;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.customer-list-loading {
+    background-color: aquamarine;
+    width: 20rem;
+}
+
+.card {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+.selected {
+    background-color: aqua;
+}
+
+
+
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 12px 40px rgba(0, 0, 0, 0.2);
+}

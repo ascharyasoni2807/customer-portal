@@ -1,26 +1,92 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import CustomerList from "./components/CustomerList";
+import CustomerDetail from "./components/CustomerDetail";
+import "./App.css";
+import { Customer } from "./type";
 
-function App() {
+const App: React.FC = () => {
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [selectedCustomerEmail, setSelectedCustomerEmail] = useState<
+    string | null
+  >(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const page = useRef<number>(1);
+  const observerRef = useRef<HTMLDivElement | null>(null);
+
+  const fetchCustomers = async (pageNumber: number) => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `https://hub.dummyapis.com/employee?pageNumber=${pageNumber}&noofRecords=10`
+      );
+
+      const newCustomers = response.data.map((employee: any) => ({
+        firstName: employee.firstName,
+        lastName: employee.lastName,
+        email: employee.email,
+      }));
+      setCustomers((prev) => [...prev, ...newCustomers]);
+      setHasMore(response.data.length > 0);
+    } catch (error) {
+      console.error("Error fetching customers:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCustomers(page.current);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && hasMore && !loading) {
+          page.current += 1;
+          fetchCustomers(page.current);
+        }
+      },
+      {
+        rootMargin: "100px",
+      }
+    );
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => {
+      if (observerRef.current) {
+        observer.unobserve(observerRef.current);
+      }
+    };
+  }, [loading, hasMore]);
+
+  const handleSelectCustomer = (email: string) => {
+    setSelectedCustomerEmail(email);
+  };
+
+  const selectedCustomer =
+    customers.find((customer) => customer.email === selectedCustomerEmail) ||
+    null;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <CustomerList
+        customers={customers}
+        selectedCustomerEmail={selectedCustomerEmail}
+        onSelectCustomer={handleSelectCustomer}
+        observerRef={observerRef}
+        loading={loading}
+      />
+
+      <div className="detail-container">
+        <CustomerDetail customer={selectedCustomer} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
