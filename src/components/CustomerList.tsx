@@ -1,7 +1,7 @@
 import React from "react";
 import { Customer } from "../type";
 import SpinnerLoader from "./SpinnerLoader";
-import "./CustomerList.css";
+import "./Css/CustomerList.css";
 
 interface CustomerListProps {
   customers: Customer[];

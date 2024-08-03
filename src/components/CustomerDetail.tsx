@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./CustomerDetail.css";
+import "./Css/CustomerDetail.css";
 import { Customer } from "../type";
 import PhotoGrid from "./PhotoGrid";
 
