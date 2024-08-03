@@ -9,13 +9,10 @@ interface CustomerDetailProps {
 }
 
 const CustomerDetail: React.FC<CustomerDetailProps> = ({ customer }) => {
-  if (!customer)
-    return (
-      <div className="detail-container">Select a customer to view details</div>
-    );
+  if (!customer) return <div>Select a customer to view details</div>;
 
   return (
-    <div className="detail-container">
+    <div>
       <h2>
         <strong> {customer.firstName}</strong>
       </h2>

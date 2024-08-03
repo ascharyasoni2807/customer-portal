@@ -31,15 +31,17 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ customer }) => {
   }, [customer]);
 
   return (
-    <div className="photo-grid">
-      {photos.map((photo, index) => (
-        <img
-          key={index}
-          src={photo.url}
-          alt={`photo-${index}`}
-          className="photo-item"
-        />
-      ))}
+    <div className="photo-grid-wrapper">
+      <div className="photo-grid">
+        {photos.map((photo, index) => (
+          <img
+            key={index}
+            src={photo.url}
+            alt={`photo-${index}`}
+            className="photo-item"
+          />
+        ))}
+      </div>
     </div>
   );
 };
