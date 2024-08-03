@@ -56,10 +56,10 @@ const App: React.FC = () => {
     if (observerRef.current) {
       observer.observe(observerRef.current);
     }
-
+    let observeCurrent = observerRef?.current;
     return () => {
-      if (observerRef.current) {
-        observer.unobserve(observerRef.current);
+      if (observeCurrent) {
+        observer.unobserve(observeCurrent);
       }
     };
   }, [loading, hasMore]);
