@@ -9,9 +9,11 @@ const PhotoGrid: React.FC = () => {
 
   useEffect(() => {
     const fetchPhotos = async () => {
+      const pageNumber = Math.floor(Math.random() * 9) + 1; // Random page number between 1 and 9
+
       try {
         const response = await axios.get(
-          "https://jsonplaceholder.typicode.com/photos?_limit=9"
+          `https://jsonplaceholder.typicode.com/photos?_page=${pageNumber}&_limit=9`
         );
         setPhotos(response.data.map((photo: any) => ({ url: photo.url })));
       } catch (error) {
