@@ -1,3 +1,8 @@
+#screenshot ( haved added infinite scroll with intesection observer)
+<img width="1419" alt="image" src="https://github.com/user-attachments/assets/38254829-30dc-4e2a-a887-f65f4c514bb7">
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
